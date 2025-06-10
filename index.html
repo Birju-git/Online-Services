@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Services - PAN & Voter ID Applications</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #d0e6f8, #a4c1ee);
+      color: #0a2342;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 10px 30px;
+    }
+
+    header {
+position: relative;
+top: 0;
+left: 0;
+width: 100%;
+max-width: 100vw;
+background: rgba(255 255 255 / 0.95);
+backdrop-filter: saturate(180%) blur(12px);
+padding: 20px 15px 20px;
+text-align: center;
+z-index: 10;
+box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+color: #0a2342;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 8px;
+user-select: none;
+overflow-wrap: break-word;
+border-radius: 0;
+margin: 0 0 24px 0;
+animation: slideDownFade 0.7s ease forwards;
+line-height: 1.2;
+word-break: break-word;
+font-size: 16px;
+
+@media (max-width: 480px) {
+  padding: 15px 10px 15px;
+  font-size: 14px;
+}
+
+word-break: break-word;
+
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 1.1px;
+      user-select: text;
+      margin-bottom: 0;
+    }
+
+    header p {
+      margin: 0;
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: #53769a;
+      user-select: text;
+      max-width: 320px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(3, 55, 105, 0.15);
+      padding: 20px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    section {
+      margin-bottom: 28px;
+    }
+
+    section h2 {
+      color: #134074;
+      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .description {
+      font-size: 0.95rem;
+      color: #3a5a8c;
+      margin-bottom: 8px;
+      user-select: text;
+      line-height: 1.3;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      fill: #1b4f9c;
+      flex-shrink: 0;
+      animation: pulse 2.5s infinite alternate;
+    }
+
+    button.apply-btn {
+      width: 100%;
+      padding: 14px 0;
+      background: #1b4f9c;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 12px rgba(27, 79, 156, 0.4);
+      user-select: none;
+    }
+    button.apply-btn:hover,
+    button.apply-btn:focus {
+      background: #145090;
+      outline: none;
+    }
+
+    .fee {
+      font-weight: 600;
+      color: #0a2342;
+      margin-top: 6px;
+      font-size: 0.95rem;
+      user-select: none;
+    }
+
+    .chat-btn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: #145090;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      box-shadow: 0 6px 18px rgba(20, 80, 144, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 999;
+    }
+    .chat-btn:hover {
+      background: #0e3c6d;
+    }
+    .chat-btn img {
+      width: 58px;
+      height: 58px;
+      display: block;
+    }
+
+    .contact-line {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #134074;
+      font-size: 1rem;
+      user-select: text;
+    }
+
+    .contact-info {
+      margin-top: 10px;
+      color: #1b4f9c;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: text;
+      gap: 6px;
+    }
+
+    .phone-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phone-whatsapp a {
+      text-decoration: none;
+      color: #1b4f9c;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .whatsapp-icon {
+      width: 24px;
+      height: 24px;
+      fill: #25D366;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .whatsapp-icon:hover {
+      transform: scale(1.15);
+    }
+
+    .address {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #3a5a8c;
+      max-width: 320px;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDownFade {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        fill: #1b4f9c;
+      }
+      100% {
+        transform: scale(1.1);
+        fill: #3e72d0;
+      }
+    }
+
+    @media (max-width: 400px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      header p {
+        font-size: 0.9rem;
+        max-width: 260px;
+      }
+      main {
+        padding: 16px 18px;
+        max-width: 100vw;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      button.apply-btn {
+        font-size: 1rem;
+        padding: 12px 0;
+      }
+      .contact-info {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Services</h1>
+    <p>PAN Card & Voter ID Applications</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>
+        <!-- Voter ID icon -->
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+        Voter ID New
+      </h2>
+      <p class="description">Apply for a new Voter ID to register yourself as an eligible voter.</p>
+      <p class="fee">Fee: ₹50</p>
+      <button class="apply-btn" onclick="window.open('https://forms.gle/Tp6pZ8pPzaChStK69', '_blank')">Apply Now</button>
+    </section>
+
+    <section>
+      <h2>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+        Voter ID Update
+      </h2>
+      <p class="description">Update your existing Voter ID details like address, name, or other information.</p>
+      <p class="fee">Fee: ₹30</p>
+      <button class="apply-btn" onclick="window.open('https://forms.gle/bAbBbuWExW11vw5P8', '_blank')">Apply Now</button>
+    </section>
+
+    <section>
+      <h2>
+        <!-- PAN card icon -->
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5c0-1.1-.9-2-2-2zM8 19H6v-2h2v2zm0-4H6v-2h2v2zm6 4h-4v-2h4v2zm0-4h-4v-2h4v2zm2 4h-2v-2h2v2zm0-4h-2v-2h2v2z"/>
+        </svg>
+        PAN Card New
+      </h2>
+      <p class="description">Apply for a brand new PAN Card for tax and identity purposes.</p>
+      <p class="fee">Fee: ₹180</p>
+      <button class="apply-btn" onclick="window.open('https://forms.gle/yR6Pf6qvs8md68Jf9', '_blank')">Apply Now</button>
+    </section>
+
+    <section>
+      <h2>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5c0-1.1-.9-2-2-2zM8 19H6v-2h2v2zm0-4H6v-2h2v2zm6 4h-4v-2h4v2zm0-4h-4v-2h4v2zm2 4h-2v-2h2v2zm0-4h-2v-2h2v2z"/>
+        </svg>
+        PAN Card Update
+      </h2>
+      <p class="description">Update your existing PAN Card details like name, address, or other information.</p>
+      <p class="fee">Fee: ₹180</p>
+      <button class="apply-btn" onclick="window.open('https://forms.gle/7hjpTLVEQYgw4gif9', '_blank')">Apply Now</button>
+    </section>
+
+    <div class="contact-line">Contact us for other services</div>
+
+    <div class="contact-info">
+      <div class="phone-whatsapp">
+        <a href="tel:+919123209778" aria-label="Call us">📞 9123209778</a>
+         <a href="https://wa.me/9123209778" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/64px-WhatsApp.svg.png" 
+         alt="WhatsApp" class="whatsapp-icon" />
+  </a>
+      </div>
+      <div class="address" aria-label="Address">
+        Sarjamda, Jamshedpur, Jharkhand, 831002
+      </div>
+    </div>
+  </main>
+
+  <div class="chat-btn" onclick="window.open('https://wa.me/919123209778', '_blank')" aria-label="Chat with us on WhatsApp" title="Chat with us on WhatsApp" role="button" tabindex="0">
+   <a href="https://wa.me/9123209778" target="_blank" rel="noopener noreferrer" class="chat-btn" title="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/64px-WhatsApp.svg.png" alt="WhatsApp Icon" />
+  </a>
+      <path d="M20.52 3.48a11.94 11.94 0 00-17 0 11.89 11.89 0 00-3.5 8.5c0 2.1.54 4.13 1.57 5.94L2 21l3.1-1.14a11.91 11.91 0 006.94 2.14h.02c3.2 0 6.22-1.25 8.48-3.52a11.93 11.93 0 000-17zm-8.5 15a7.47 7.47 0 01-3.84-1.06l-.27-.16-2.3.85.77-2.24-.18-.29a7.42 7.42 0 1115.24-4.48 7.38 7.38 0 01-7.42 7.42zM16 14.5c-.14 0-.28-.01-.42-.04a.5.5 0 01-.3-.13l-2-2a.5.5 0 01-.15-.42c.02-.09.11-.24.23-.37l.17-.2a1.5 1.5 0 00-.6-2.56 1.44 1.44 0 00-1.44.32l-.27.27a.5.5 0 01-.72-.7l.27-.27a2.44 2.44 0 013.92-.54 2.47 2.47 0 01.57 1.85l-.03.19a2.5 2.5 0 012.05 2.05c0 .19-.1.35-.3.46l-1.75 1.04c-.08.05-.17.07-.27.07z"/>
+    </svg
